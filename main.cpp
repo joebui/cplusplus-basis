@@ -1,14 +1,27 @@
 #include <iostream>
 #include <vector>
+#include <thread>         // std::thread
+#include <zconf.h>
 #include "Classes/Vehicle.h"
 #include "Classes/Truck.h"
 #include "Classes/Class1.h"
 #include "poly/Shape.h"
 #include "poly/Circle.h"
 #include "poly/Square.h"
+#include "advanced/dynamic.h"
+#include "advanced/destructor.h"
+#include "advanced/FileIO.h"
+#include "advanced/DBAcess.h"
+#include <chrono>
+#include <time.h>
 
 using namespace std;
 using namespace poly;
+
+/**
+ * Define pre-processor
+ */
+#define PRE_VALUE 10
 
 void func1(int i) {
 //    int a = 111;
@@ -21,6 +34,24 @@ void func2(int *i) {
 
 void func3(int &i) {
     i = 3;
+}
+
+static bool value = true;
+
+void foo() {
+    cout << "press enter: ";
+    cin >> value;
+    value = false;
+}
+
+void bar(int x) {
+    int a = 0;
+    while(value) {
+        a++;
+        std::this_thread::sleep_for(std::chrono::milliseconds(x));
+    }
+
+    cout << "final value: " << a << endl;
 }
 
 int main() {
@@ -111,14 +142,69 @@ int main() {
     /**
      * Polymorphism and namespace
      */
-    Shape *circle;
-    circle = new Circle(20, 20);
-//    poly::Shape *circle = new poly::Circle(20, 20);
-    circle->display();
+//    cout << AAA << endl;
+//    Shape *circle;
+//    circle = new Circle(20, 20);
+//    circle->display();
+//    Shape* square = new Square(20, 20);
 
-    Shape *square;
-    square = new Square(50, 50);
-    square->display();
+    /**
+     * Typecasting
+     */
+//    double num1 = 156.6;
+//    int num2 = (int) num1;
+//    cout << num2 << endl;
+//
+//    int num3 = 156;
+//    double num4 = (double) num1;
+//    cout << num2 << endl;
+
+    /**
+     * Dynamic allocation
+     */
+//    Dynamic dynamic;
+//    dynamic.checkNullPointer();
+//
+//    Destructor *destructor = new Destructor(PRE_VALUE);
+//    destructor->print();
+//
+//    delete destructor;
+//
+//    cout << "Second call" << endl;
+//    destructor = new Destructor(5);
+//    destructor->print();
+//
+//    delete destructor;
+
+    /**
+     * File IO
+     */
+//    FileIO fileIO;
+//    fileIO.write();
+//    fileIO.read();
+
+    /**
+     * Database access
+     */
+//    DBAccess dbAccess;
+//    dbAccess.select();
+//    cout << endl;
+//    dbAccess.insert();
+//    cout << "Done insert" << endl;
+//    dbAccess.select();
+//    cout << "Done select 2" << endl;
+
+    /**
+     * Threading and timer
+     */
+//    std::thread first (foo);     // spawn new thread that calls foo()
+//    std::thread second (bar,1000);  // spawn new thread that calls bar(0)
+//
+//    printf("main, foo and bar now execute concurrently...\n");
+//
+//    // synchronize threads:
+//    first.join();                // pauses until first finishes
+//    second.join();               // pauses until second finishes
 
     return 0;
 }

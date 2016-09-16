@@ -9,6 +9,8 @@
 
 using namespace std;
 
+static int AAA = 10;
+
 namespace poly {
     class Shape {
     protected:
